@@ -2,6 +2,39 @@ const movieList = document.querySelector("#movie-list");
 const searchInput = document.querySelector("#search");
 const genreFilter = document.querySelector("#genre-filter");
 const platformFilter = document.querySelector("#platform-filter");
+
+const genreTranslations = {
+  Action: "Ação",
+  Adventure: "Aventura",
+  Animation: "Animação",
+  Biography: "Biografia",
+  Comedy: "Comédia",
+  Crime: "Crime",
+  Documentary: "Documentário",
+  Drama: "Drama",
+  Family: "Família",
+  Fantasy: "Fantasia",
+  History: "História",
+  Horror: "Terror",
+  Music: "Musical",
+  Mystery: "Mistério",
+  Romance: "Romance",
+  "Sci-Fi": "Ficção científica",
+  Sport: "Esporte",
+  Thriller: "Suspense",
+  War: "Guerra",
+  Western: "Faroeste"
+};
+
+const platformIcons = {
+  Netflix: "netflix",
+  "Prime Video": "primevideo",
+  "Apple TV": "appletv",
+  "Disney+": "disneyplus",
+  Globoplay: "globoplay",
+  "Paramount+": "paramountplus",
+  Max: "max"
+};
 const emptyState = document.querySelector("#empty-state");
 
 const sortedMovies = [...movies].sort((a, b) =>
@@ -11,7 +44,9 @@ const sortedMovies = [...movies].sort((a, b) =>
 document.querySelector("#movie-count").textContent =
   `${sortedMovies.length} filme${sortedMovies.length === 1 ? "" : "s"}`;
 
-const genres = [...new Set(sortedMovies.flatMap(movie => movie.genres))]
+const genres = [...new Set(sortedMovies.flatMap(movie =>
+  movie.genres.map(genre => genreTranslations[genre] || genre)
+))]
   .sort((a, b) => a.localeCompare(b, "pt-BR"));
 
 genres.forEach(genre => {
@@ -37,7 +72,9 @@ function renderMovies() {
   const genre = genreFilter.value;
   const platform = platformFilter.value;
   const visibleMovies = sortedMovies.filter(movie => {
-    const matchesGenre = !genre || movie.genres.includes(genre);
+      const matchesGenre = !genre || movie.genres.some(item =>
+        (genreTranslations[item] || item) === genre
+      );
     const matchesPlatform = !platform ||
       movie.platforms.some(offering => offering.name === platform);
     const searchable = `${movie.title} ${movie.cast.join(" ")}`.toLocaleLowerCase("pt-BR");
@@ -45,9 +82,13 @@ function renderMovies() {
   });
 
   movieList.innerHTML = visibleMovies.map((movie) => {
-    const platforms = movie.platforms.map(platform =>
-      `<a class="platform" href="${platform.url}" target="_blank" rel="noreferrer">${platform.name}</a>`
-    ).join("");
+    const platforms = movie.platforms.map(platform => {
+      const icon = platformIcons[platform.name];
+      const iconMarkup = icon
+        ? `<img class="platform-icon" src="https://cdn.simpleicons.org/${icon}" alt="" aria-hidden="true">`
+        : "";
+      return `<a class="platform" href="${platform.url}" target="_blank" rel="noreferrer">${iconMarkup}<span>${platform.name}</span></a>`;
+    }).join("");
 
     return `
       <article class="movie-card">
@@ -66,7 +107,7 @@ function renderMovies() {
               ★ ${movie.rating} <span>/ 10</span>
             </a>
           </div>
-          <p class="genres">${movie.genres.join(" · ")}</p>
+          <p class="genres">${movie.genres.map(genre => genreTranslations[genre] || genre).join(" · ")}</p>
           <p class="synopsis">${movie.synopsis}</p>
           <p class="cast"><strong>Elenco: </strong>${movie.cast.join(", ")}</p>
           <div class="actions">
