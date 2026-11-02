@@ -1,0 +1,89 @@
+:root {
+  --ink: #172019;
+  --paper: #f4f1e8;
+  --orange: #e75b31;
+  --gold: #f5c84c;
+  --muted: #6d716c;
+  --line: #d9d5c9;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "DM Sans", sans-serif;
+}
+
+.hero {
+  min-height: 520px;
+  padding: 28px clamp(20px, 7vw, 110px) 44px;
+  color: #fff;
+  background:
+    linear-gradient(90deg, rgba(18, 23, 18, .96) 0%, rgba(18, 23, 18, .78) 46%, rgba(18, 23, 18, .15) 100%),
+    url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=85") center 58% / cover;
+}
+
+.nav { display: flex; justify-content: space-between; align-items: center; }
+.brand, .imdb-link { color: inherit; font-weight: 700; text-decoration: none; }
+.brand { letter-spacing: .18em; }
+.imdb-link { border-bottom: 1px solid rgba(255,255,255,.7); padding-bottom: 4px; font-size: .85rem; }
+
+.hero-copy { margin-top: 95px; }
+.eyebrow { color: var(--gold); letter-spacing: .22em; font-size: .75rem; font-weight: 700; }
+h1 { margin: 12px 0 16px; font-family: "DM Serif Display", serif; font-size: clamp(4rem, 8vw, 7rem); font-weight: 400; line-height: .82; }
+h1 em { color: var(--gold); }
+.hero-copy > p:last-child { max-width: 470px; color: rgba(255,255,255,.78); font-size: 1.05rem; }
+.hero-meta { display: flex; gap: 10px; margin-top: 48px; text-transform: uppercase; letter-spacing: .08em; font-size: .67rem; }
+.hero-meta span { border-left: 2px solid var(--orange); padding-left: 10px; }
+
+main, footer { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+.toolbar { display: flex; gap: 12px; padding: 30px 0 18px; border-bottom: 1px solid var(--line); }
+.toolbar input, .toolbar select { height: 42px; border: 1px solid var(--line); border-radius: 2px; background: transparent; padding: 0 14px; font: inherit; color: var(--ink); }
+.toolbar input { width: min(380px, 55vw); }
+.toolbar select { min-width: 180px; }
+
+.movie-list { display: grid; gap: 0; }
+.movie-card {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 34px;
+  padding: 42px 0;
+  border-bottom: 1px solid var(--line);
+}
+.poster-wrap { position: relative; }
+.poster { width: 210px; aspect-ratio: 2 / 3; object-fit: cover; background: #ddd; box-shadow: 8px 8px 0 var(--gold); }
+.rank { position: absolute; left: -12px; top: -12px; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: white; background: var(--orange); font-weight: 700; }
+.movie-content { min-width: 0; }
+.movie-heading { display: flex; align-items: baseline; gap: 18px; }
+.movie-heading h2 { margin: 0; font-family: "DM Serif Display", serif; font-size: clamp(2rem, 5vw, 3.3rem); font-weight: 400; line-height: 1; }
+.year { color: var(--orange); font-weight: 700; }
+.rating { margin-left: auto; white-space: nowrap; font-family: "DM Serif Display", serif; font-size: 1.7rem; }
+.rating span { color: #777; font-family: "DM Sans", sans-serif; font-size: .75rem; }
+.genres { margin: 12px 0 20px; color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; }
+.synopsis { max-width: 760px; color: #50554f; line-height: 1.65; }
+.cast { margin: 18px 0; font-size: .88rem; }
+.cast strong, .platforms strong { text-transform: uppercase; letter-spacing: .08em; font-size: .68rem; }
+.actions, .platforms { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
+.button, .platform { border: 1px solid var(--ink); padding: 8px 12px; color: var(--ink); text-decoration: none; font-size: .76rem; font-weight: 700; }
+.button.trailer { border-color: var(--orange); color: var(--orange); }
+.platform:hover, .button:hover { transform: translateY(-2px); }
+.empty-state { text-align: center; padding: 80px 0; color: var(--muted); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+footer { display: flex; justify-content: space-between; padding: 32px 0 50px; color: var(--muted); font-size: .78rem; }
+footer a { color: var(--ink); }
+
+@media (max-width: 700px) {
+  .hero { min-height: 470px; padding-inline: 20px; }
+  .hero-copy { margin-top: 90px; }
+  h1 { font-size: 3.7rem; }
+  .movie-card { grid-template-columns: 120px 1fr; gap: 20px; padding: 30px 0; }
+  .poster { width: 120px; }
+  .movie-heading { display: block; }
+  .rating { display: inline-block; margin: 10px 0 0; }
+  .toolbar { flex-direction: column; }
+  .toolbar input { width: 100%; }
+  footer { display: block; }
+}
