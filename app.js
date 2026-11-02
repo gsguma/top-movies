@@ -33,6 +33,7 @@ const platformIcons = {
   "Disney+": "D+",
   Globoplay: "globo",
   "Paramount+": "P+",
+  HBO: "HBO",
   Max: "M"
 };
 const emptyState = document.querySelector("#empty-state");

@@ -77,6 +77,7 @@ main, footer { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
 .platform-disney- { background: #113ccf; }
 .platform-globoplay { background: linear-gradient(135deg, #ff5c6c, #bd6eff, #4e91ff); }
 .platform-paramount- { background: #0064ff; }
+.platform-hbo { color: #fff; background: linear-gradient(135deg, #000, #5034a8); font-size: 7px; }
 .platform-max { background: linear-gradient(135deg, #2422d9, #9e29d7); }
 .button.trailer { border-color: var(--orange); color: var(--orange); }
 .platform:hover, .button:hover { transform: translateY(-2px); }
