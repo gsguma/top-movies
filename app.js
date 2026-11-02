@@ -1,6 +1,7 @@
 const movieList = document.querySelector("#movie-list");
 const searchInput = document.querySelector("#search");
 const genreFilter = document.querySelector("#genre-filter");
+const platformFilter = document.querySelector("#platform-filter");
 const emptyState = document.querySelector("#empty-state");
 
 const sortedMovies = [...movies].sort((a, b) =>
@@ -20,13 +21,27 @@ genres.forEach(genre => {
   genreFilter.append(option);
 });
 
+const platforms = [...new Set(sortedMovies.flatMap(movie =>
+  movie.platforms.map(platform => platform.name)
+))].sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+platforms.forEach(platform => {
+  const option = document.createElement("option");
+  option.value = platform;
+  option.textContent = platform;
+  platformFilter.append(option);
+});
+
 function renderMovies() {
   const query = searchInput.value.trim().toLocaleLowerCase("pt-BR");
   const genre = genreFilter.value;
+  const platform = platformFilter.value;
   const visibleMovies = sortedMovies.filter(movie => {
     const matchesGenre = !genre || movie.genres.includes(genre);
+    const matchesPlatform = !platform ||
+      movie.platforms.some(offering => offering.name === platform);
     const searchable = `${movie.title} ${movie.cast.join(" ")}`.toLocaleLowerCase("pt-BR");
-    return matchesGenre && searchable.includes(query);
+    return matchesGenre && matchesPlatform && searchable.includes(query);
   });
 
   movieList.innerHTML = visibleMovies.map((movie) => {
@@ -68,4 +83,5 @@ function renderMovies() {
 
 searchInput.addEventListener("input", renderMovies);
 genreFilter.addEventListener("change", renderMovies);
+platformFilter.addEventListener("change", renderMovies);
 renderMovies();
