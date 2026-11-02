@@ -92,6 +92,8 @@ function renderMovies() {
       })
       .join("");
     const trailerLink = `<a class="platform trailer-platform" href="${movie.trailer}" target="_blank" rel="noreferrer">${trailerIcon}<span>Trailer - YouTube</span></a>`;
+    const searchIcon = '<svg class="platform-icon search-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="m21 21-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"/></svg>';
+    const streamingSearch = `<a class="platform missing-platforms" href="https://www.google.com/search?q=${encodeURIComponent(`onde assistir "${movie.title}" ${movie.year} Brasil`)}" target="_blank" rel="noreferrer">${searchIcon}<span>Nenhuma Plataforma, onde assistir?</span></a>`;
 
     return `
       <article class="movie-card">
@@ -113,7 +115,7 @@ function renderMovies() {
           <p class="genres">${movie.genres.map(genre => genreTranslations[genre] || genre).join(" · ")}</p>
           <p class="synopsis">${movie.synopsis}</p>
           <p class="cast"><strong>Elenco: </strong>${movie.cast.join(", ")}</p>
-          <div class="platforms"><strong>Onde assistir:</strong>${trailerLink}${platformLinks || '<span>Nenhuma plataforma confirmada</span>'}</div>
+          <div class="platforms"><strong>Onde assistir:</strong>${trailerLink}${platformLinks || streamingSearch}</div>
         </div>
       </article>`;
   }).join("");
