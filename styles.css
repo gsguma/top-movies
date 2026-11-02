@@ -68,7 +68,16 @@ main, footer { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
 .actions, .platforms { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; }
 .button, .platform { border: 1px solid var(--ink); padding: 8px 12px; color: var(--ink); text-decoration: none; font-size: .76rem; font-weight: 700; }
 .platform { display: inline-flex; align-items: center; gap: 7px; }
-.platform-icon { width: 18px; height: 18px; object-fit: contain; }
+.platform-icon { flex: 0 0 auto; width: 20px; height: 20px; object-fit: contain; }
+.youtube-icon { color: #ef1d1d; }
+.platform-logo { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 4px; color: #fff; background: #333; font-size: 8px; font-weight: 800; line-height: 1; text-transform: uppercase; }
+.platform-netflix { background: #e50914; font-size: 14px; }
+.platform-prime-video { background: #00a8e1; }
+.platform-apple-tv { background: #111; }
+.platform-disney- { background: #113ccf; }
+.platform-globoplay { background: linear-gradient(135deg, #ff5c6c, #bd6eff, #4e91ff); }
+.platform-paramount- { background: #0064ff; }
+.platform-max { background: linear-gradient(135deg, #2422d9, #9e29d7); }
 .button.trailer { border-color: var(--orange); color: var(--orange); }
 .platform:hover, .button:hover { transform: translateY(-2px); }
 .empty-state { text-align: center; padding: 80px 0; color: var(--muted); }

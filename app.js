@@ -27,13 +27,13 @@ const genreTranslations = {
 };
 
 const platformIcons = {
-  Netflix: "netflix",
-  "Prime Video": "primevideo",
-  "Apple TV": "appletv",
-  "Disney+": "disneyplus",
-  Globoplay: "globoplay",
-  "Paramount+": "paramountplus",
-  Max: "max"
+  Netflix: "N",
+  "Prime Video": "prime",
+  "Apple TV": "tv",
+  "Disney+": "D+",
+  Globoplay: "globo",
+  "Paramount+": "P+",
+  Max: "M"
 };
 const emptyState = document.querySelector("#empty-state");
 
@@ -82,13 +82,15 @@ function renderMovies() {
   });
 
   movieList.innerHTML = visibleMovies.map((movie) => {
-    const platforms = movie.platforms.map(platform => {
-      const icon = platformIcons[platform.name];
-      const iconMarkup = icon
-        ? `<img class="platform-icon" src="https://cdn.simpleicons.org/${icon}" alt="" aria-hidden="true">`
-        : "";
-      return `<a class="platform" href="${platform.url}" target="_blank" rel="noreferrer">${iconMarkup}<span>${platform.name}</span></a>`;
-    }).join("");
+    const trailerIcon = '<svg class="platform-icon youtube-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg>';
+    const platformLinks = [...movie.platforms]
+      .sort((a, b) => a.name.localeCompare(b.name, "pt-BR"))
+      .map(platform => {
+        const icon = platformIcons[platform.name] || platform.name.charAt(0);
+        return `<a class="platform" href="${platform.url}" target="_blank" rel="noreferrer"><span class="platform-logo platform-${platform.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}">${icon}</span><span>${platform.name}</span></a>`;
+      })
+      .join("");
+    const trailerLink = `<a class="platform trailer-platform" href="${movie.trailer}" target="_blank" rel="noreferrer">${trailerIcon}<span>Trailer - YouTube</span></a>`;
 
     return `
       <article class="movie-card">
@@ -110,11 +112,7 @@ function renderMovies() {
           <p class="genres">${movie.genres.map(genre => genreTranslations[genre] || genre).join(" · ")}</p>
           <p class="synopsis">${movie.synopsis}</p>
           <p class="cast"><strong>Elenco: </strong>${movie.cast.join(", ")}</p>
-          <div class="actions">
-            <a class="button trailer" href="${movie.trailer}" target="_blank" rel="noreferrer">▶ Trailer no YouTube</a>
-            <a class="button" href="${movie.imdb}" target="_blank" rel="noreferrer">IMDb</a>
-          </div>
-          <div class="platforms"><strong>Onde assistir:</strong>${platforms || '<span>Nenhuma plataforma confirmada</span>'}</div>
+          <div class="platforms"><strong>Onde assistir:</strong>${trailerLink}${platformLinks || '<span>Nenhuma plataforma confirmada</span>'}</div>
         </div>
       </article>`;
   }).join("");
