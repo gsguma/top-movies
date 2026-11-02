@@ -58,7 +58,7 @@ function renderMovies() {
             <a class="button trailer" href="${movie.trailer}" target="_blank" rel="noreferrer">▶ Trailer no YouTube</a>
             <a class="button" href="${movie.imdb}" target="_blank" rel="noreferrer">IMDb</a>
           </div>
-          <div class="platforms"><strong>Onde assistir:</strong>${platforms || '<span>Não informado</span>'}</div>
+          <div class="platforms"><strong>Onde assistir:</strong>${platforms || '<span>Nenhuma plataforma confirmada</span>'}</div>
         </div>
       </article>`;
   }).join("");
