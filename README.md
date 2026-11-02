@@ -11,9 +11,11 @@ Abra o arquivo `index.html` diretamente para testar localmente ou publique o con
 ## GitHub Pages
 
 1. No GitHub, abra **Settings > Pages**.
-2. Em **Build and deployment**, escolha **GitHub Actions** como origem.
-3. Faça push da branch padrão.
-4. O workflow `.github/workflows/deploy-pages.yml` publica automaticamente os arquivos estáticos.
+2. Em **Build and deployment**, escolha **Deploy from a branch**.
+3. Selecione a branch `main` e a pasta `/ (root)`.
+4. Salve.
+
+O GitHub executará automaticamente o workflow `pages-build-deployment`. Não é necessário adicionar outro workflow de publicação.
 
 ## Atualizar
 
