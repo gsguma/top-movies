@@ -1,16 +1,10 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Minha seleção de filmes, organizada por ano e nota do IMDb.">
-    <title>Minha Lista de Filmes</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
+---
+layout: default
+---
+<link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <header class="hero">
       <nav class="nav" aria-label="Principal">
         <a class="brand" href="#">TOP MOVIES</a>
@@ -51,5 +45,3 @@
 
     <script src="movies.js"></script>
     <script src="app.js"></script>
-  </body>
-</html>
