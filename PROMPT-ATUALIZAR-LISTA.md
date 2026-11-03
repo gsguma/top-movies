@@ -13,8 +13,9 @@ Use este prompt sempre que quiser atualizar o site.
 > 5. Não invente metadados nem disponibilidade. Cite valores “Não informado” quando não conseguir confirmar uma plataforma.
 > 6. Use a estrutura de objetos já existente em `movies.js`.
 > 7. Ordene os filmes por ano crescente e, dentro do mesmo ano, por nota IMDb decrescente.
-> 8. Confira se todas as imagens e links são HTTPS, se não há títulos duplicados e se os dados são válidos.
-> 9. Execute um servidor local e valide visualmente os cartões, filtros, responsividade, links e ordenação.
-> 10. Não remova a documentação nem outros comportamentos da interface.
+> 8. Atualize a data "Última atualização" exibida no HTML para o dia atual, mantendo o formato `DD/MM/YYYY`.
+> 9. Confira se todas as imagens e links são HTTPS, se não há títulos duplicados e se os dados são válidos.
+> 10. Execute um servidor local e valide visualmente os cartões, filtros, responsividade, links e ordenação.
+> 11. Não remova a documentação nem outros comportamentos da interface.
 >
 > Ao terminar, faça um resumo curto dos títulos adicionados, atualizados, removidos e dos campos que não puderam ser confirmados.
